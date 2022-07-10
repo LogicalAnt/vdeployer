@@ -16,7 +16,7 @@ export const deployFiles = () => {
       if (!fileInfo.synced) {
         const compiledFileName =
           head(get(fileInfo, "fileName", "").split(".")) + ".js"
-        const compiledFilePath = `${compiledScriptFolder}${fileName}`
+        const compiledFilePath = `${compiledScriptFolder}${compiledFileName}`
         const usersScriptFile = get(fileInfo, "fileName", "")
         fs.unlinkSync(compiledFilePath)
         childProcess
