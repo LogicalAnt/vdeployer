@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 import { program } from "commander"
-//import Table from "cli-table"
 import { getFilesList } from "./utils/getFilesList.js"
 program.version("1.0.0").description("vtecx deploy helper")
 
@@ -9,7 +8,7 @@ program
   .alias("l")
   .option("--date", "show modified dates")
   .action((args) => {
-    const showDate = args.date
+    const showDate = args.date ?? false
     const { usersScript } = getFilesList()
     usersScript({ showDate })
   })

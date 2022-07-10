@@ -6,28 +6,35 @@ import format from "date-fns/format/index.js"
 import get from "lodash/get.js"
 import head from "lodash/head.js"
 import differenceInSeconds from "date-fns/differenceInSeconds/index.js"
-import cp from "child_process"
-import ora from "ora"
+import childProcess from "child_process"
 export const getFilesList = () => {
   const usersScript = ({ showDate }) => {
     const usersScriptFolder = "src/server/"
     const compiledScriptFolder = "dist/server/"
     const dateFormat = "yyyy-MM-dd HH:mm:ss a"
-    const table = new Table({
-      head: ["#", "File Name", "Synced", "Date Modified", "Date Uploaded"],
-      colWidths: [5, 42, 8, 27, 27],
-    })
     const uploadedScript = {}
+
+    const table = new Table({
+      head: [
+        "#",
+        "File Name",
+        "Synced",
+        ...(showDate ? ["Date Modified", "Date Uploaded"] : []),
+      ],
+      colWidths: [5, 42, 8, ...(showDate ? [27, 27] : [])],
+    })
+
     try {
       fs.readdirSync(compiledScriptFolder).forEach((file) => {
         const uploadTime = fs.statSync(compiledScriptFolder + file).mtime
-        const fileName = file //.split(".")[0]
+        const fileName = file
         uploadedScript[fileName] = uploadTime
       })
+
       fs.readdirSync(usersScriptFolder).forEach((file, index) => {
         const fileName = head(file.split(".")) + ".js"
 
-        const dateModified = cp
+        const dateModified = childProcess
           .execSync(`git log -1 --format=%cd ${usersScriptFolder + file}`)
           .toString()
           .trim()
@@ -40,13 +47,13 @@ export const getFilesList = () => {
           new Date(dateModified)
         )
         const syncedStatus =
-          syncedDiff >= 0 ? chalk.greenBright("✔") : chalk.red("✖")
+          syncedDiff >= 0 ? chalk.greenBright("✔") : chalk.redBright("✖")
+
         table.push([
           index + 1,
           file,
           syncedStatus,
-          formatModifiedDate,
-          formatUploadedDate,
+          ...(showDate ? [formatModifiedDate, formatUploadedDate] : []),
         ])
       })
       console.log(table.toString())
