@@ -16,13 +16,17 @@
     "cli-table": "^0.3.11",
     "commander": "^9.3.0",
     "date-fns": "^2.28.0",
-    "eslint": "^8.19.0",
     "lodash": "^4.17.21",
     "ora": "^6.1.2"
   },
   "type": "module",
   "preferGlobal": true,
   "devDependencies": {
-    "@types/cli-table": "^0.3.0"
+    "@types/cli-table": "^0.3.0",
+    "eslint": "^8.19.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }
