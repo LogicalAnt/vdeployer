@@ -5,7 +5,7 @@ import { getFilesList } from "./getFilesList.js"
 import ora from "ora"
 import differenceInSeconds from "date-fns/differenceInSeconds/index.js"
 import { exec } from "node:child_process"
-import { unlink } from "node:fs/promises"
+import { unlink, access } from "node:fs/promises"
 import find from "lodash/find.js"
 import chalk from "chalk"
 
@@ -36,7 +36,13 @@ export const deployFiles = () => {
           ? true
           : false
       if (!syncedStatus) {
-        unlink(`src/dist/${compiledFileName}`).catch(() => null)
+        access(`dist/server/${compiledFileName}`)
+          .then((res) => {
+            if (res) unlink(`dist/server/${compiledFileName}`)
+          })
+          .catch(() => {
+            return null
+          })
 
         const deployedPromise = new Promise((resolve, reject) => {
           exec(
