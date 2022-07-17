@@ -10,7 +10,7 @@
     "vdeployer": "./index.js"
   },
   "author": "LogicalAnt",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^5.0.1",
     "cli-table": "^0.3.11",
