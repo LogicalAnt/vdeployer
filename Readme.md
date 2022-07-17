@@ -32,6 +32,11 @@ $ vdeployer l --date
 | 2   | save-file.tsx   | ✖      | 16-07-2022 22:49:41 PM | 16-07-2022 22:40:52 PM |
 
 
+
+https://user-images.githubusercontent.com/16508504/179388160-834987a0-3735-41ac-a67b-d26ea02951c4.mov
+
+
+
 ## Upload all the unsynced files
 ```console
 $ vdeployer d
@@ -45,6 +50,11 @@ asset ./server/create_site.js 20.9 KiB [compared for emit] [minimized] (name: ma
 webpack 5.73.0 compiled successfully in 8179 ms
 dist/server/create_site.js --> http://vdeployer-test.vte.cx/server/create_site.js
 ```
+
+
+https://user-images.githubusercontent.com/16508504/179388256-ea812e9c-4305-403a-bb3f-9cce43b313a8.mov
+
+
 
 ## Create script files
 ```console
@@ -71,3 +81,8 @@ npx vtecxutil upload
 ...
 npx webpack --env entry=/server/create_talkroom.tsx --mode=production --env externals=false
 ```
+
+
+https://user-images.githubusercontent.com/16508504/179388276-e1be373a-df88-46ae-a0ab-2db7d826b61d.mov
+
+
