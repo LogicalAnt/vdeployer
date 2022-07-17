@@ -9,7 +9,7 @@ vdeployer is a CLI tool that can deploy files from vtecx project which needs to 
 While working with the vtecx framework, developers had to share which server script files they have changed, so that others can compile and deploy the changes. **Vdeployer** focused to mitigate the problem.
 
 # Installation
-`npm install --save vdeployer`
+`npm i -g vdeployer`
 
 # Usage
 
