@@ -37,8 +37,8 @@ export const deployFiles = () => {
           : false
       if (!syncedStatus) {
         access(`dist/server/${compiledFileName}`)
-          .then((res) => {
-            if (res) unlink(`dist/server/${compiledFileName}`)
+          .then(() => {
+            unlink(`dist/server/${compiledFileName}`)
           })
           .catch(() => {
             return null
